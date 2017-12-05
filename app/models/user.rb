@@ -8,16 +8,23 @@ class User < ActiveRecord::Base
     new_review = Review.create(title: title, message: message, wait_time: wait_time, service: service, user_id: self.id, polling_place_id: self.find_current_polling_place)
   end
   #A user will be solely responsible for creating residences
-  def create_residence(address:, :is_primary)
+  def create_residence(address:, is_primary:)
+
     new_residence = Residence.create(address: address, is_primary: is_primary, user_id: self.id)
+    new_residence.find_polling_place_id
+    new_residence
+
+    #save at some point!@#!@#!@#
   end
   #A user can have many residences, but polling_place must be determined by primary only
   def primary_residence
-    self.residences.where("is_primary = ?", true)
+    self.residences.find_by(is_primary: true)
+    #binding.pry
   end
 
   def find_current_polling_place
-    self.primary_residence.polling_place.id
+    self.primary_residence.polling_place_id
+    #binding.pry
   end
 
 end
