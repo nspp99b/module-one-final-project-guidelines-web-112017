@@ -16,8 +16,6 @@ class Residence < ActiveRecord::Base
     json_data["council_district"].to_i ? json_data["council_district"].to_i : 666
   end
 
-
-
   def find_polling_place_id
     #call API here.
     #runs get_district(address) and finds polling place with that district

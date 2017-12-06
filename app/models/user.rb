@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
   #A user will be solely responsible for creating residences
   def create_residence(street_number: , street_name: , zip_code: , is_primary:)
-
+    self.maintain_primary_residence
     new_residence = Residence.create(street_number: street_number, street_name: street_name, zip_code: zip_code, is_primary: is_primary, user_id: self.id)
     #class method to find the polling place id. This runs API.
     new_residence.find_polling_place_id
@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
   def find_current_polling_place
     self.primary_residence.polling_place_id
     #binding.pry
+  end
+
+  private
+
+  def maintain_primary_residence
+    Residence.all.where(user_id: self.id).each do |residence|
+      residence.is_primary = false
+    end
   end
 
 end
