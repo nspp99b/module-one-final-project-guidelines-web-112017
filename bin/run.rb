@@ -77,7 +77,7 @@ while i < 3
       puts "Please enter a title: "
       title = gets.chomp
       puts "Message Body: "
-      title = gets.chomp
+      message = gets.chomp
       puts "Please estimate the wait time in minutes: "
       wait_time = gets.chomp
       puts "Please rate the service of the pollworkers on a scale of 1 to 10."
