@@ -13,7 +13,7 @@ class Residence < ActiveRecord::Base
     url = query_string + street_number + street_name + postal_code + api_key
     # puts url
     json_data = parse_district_response(RestClient.get(url))
-    json_data["districtKey"].to_i
+    json_data["council_district"].to_i ? json_data["council_district"].to_i : 666
   end
 
 
