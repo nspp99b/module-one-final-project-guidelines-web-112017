@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
     #binding.pry
   end
 
-  private
-
   def maintain_primary_residence
     Residence.all.where(user_id: self.id).each do |residence|
       residence.is_primary = false

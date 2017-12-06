@@ -7,7 +7,7 @@ u3 = User.create(first_name: "Joey", last_name: "Joejoe-Shabadoo")
 pp666 = PollingPlace.create(name: "Sorry... you have nowhere to vote at this time.", address: "See you in hell.")
 
 # c = CSV.read("/Users/smotia/Development/code/module-one-final-project-guidelines-web-112017/db/voting_poll_sites.csv" :headers=>true)
-CSV.foreach("/Users/smotia/Development/code/module-one-final-project-guidelines-web-112017/db/voting_poll_sites.csv", headers: true) do |row|
+CSV.foreach("db/voting_poll_sites.csv", headers: true) do |row|
   polling_place_hash = {}
   polling_place_hash[:name] = row[2]
   polling_place_hash[:address] = "#{row[3]} #{row[4]} #{row[6]}"
