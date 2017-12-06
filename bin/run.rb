@@ -2,7 +2,7 @@ require_relative '../config/environment'
 
 puts "Welcome to The App"
 
-COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find Current Polling Place", "Create a Review", "Exit" ]
+MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find Current Polling Place", "Create a Review", "Exit" ]
 i = 2
 
 current_user = nil
@@ -12,7 +12,7 @@ while i < 3
     puts "You are currently logged in as #{current_user.first_name} #{current_user.last_name}."
   end
   puts "You are on Main Menu. Enter a command:"
-  COMMANDS.each do |command|
+  MAIN_MENU_COMMANDS.each do |command|
     puts command
   end
   result = gets.chomp.downcase
@@ -46,7 +46,7 @@ while i < 3
 
 
   when "add a residence"
-
+    if current_user
     puts "Please enter your street number: "
       street_number = gets.chomp
     puts "Street Name: "
@@ -55,18 +55,25 @@ while i < 3
       zip_code = gets.chomp
       current_user.create_residence(street_number: street_number, street_name: street_name, zip_code: zip_code, is_primary: true)
     puts "Residence added."
+  else
+    puts "Please sign in or create a current account to add a residence"
+  end
 
   when "find current polling place"
-    if current_user.primary_residence
-      puts "current_user.find_current_polling_place.name"
-      puts "current_user.find_current_polling_place.address"
-      puts "current_user.find_current_polling_place.council_district"
+    if current_user
+      if current_user.primary_residence
+        puts "#{current_user.find_current_polling_place.name}"
+        puts "#{current_user.find_current_polling_place.address}"
+        puts "#{current_user.find_current_polling_place.council_district}"
+      else
+        puts "No primary residence found. Please add a residence."
+      end
     else
-      puts "No primary residence found. Please add a residence."
+      puts "You are NOT A USER you dont GET to find a polling place. Create an account."
     end
 
   when "create a review"
-    if current_user.find_current_polling_place
+    if  current_user && current_user.find_current_polling_place
       puts "Please enter a title: "
       title = gets.chomp
       puts "Message Body: "
@@ -77,6 +84,8 @@ while i < 3
       service = gets.chomp
       current_user.create_review(title: title, message: message, wait_time: wait_time, service: service)
       puts "Review created."
+    else
+      "You don't have an account OR do not currently have a polling place via a residence. Please make sure you have both and try again."
     end
   end
 end
