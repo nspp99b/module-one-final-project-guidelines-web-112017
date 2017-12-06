@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
     new_review = Review.create(title: title, message: message, wait_time: wait_time, service: service, user_id: self.id, polling_place_id: self.find_current_polling_place)
   end
   #A user will be solely responsible for creating residences
-  def create_residence(address:, is_primary:)
+  def create_residence(street_number: , street_name: , zip_code: , is_primary:)
 
-    new_residence = Residence.create(address: address, is_primary: is_primary, user_id: self.id)
+    new_residence = Residence.create(street_number: street_number, street_name: street_name, zip_code: zip_code, is_primary: is_primary, user_id: self.id)
+    #class method to find the polling place id. This runs API.
     new_residence.find_polling_place_id
     new_residence
 

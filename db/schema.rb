@@ -15,10 +15,13 @@ ActiveRecord::Schema.define(version: 20171205183224) do
   create_table "polling_places", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.integer "district_key"
   end
 
   create_table "residences", force: :cascade do |t|
-    t.string "address"
+    t.integer "street_number"
+    t.string "street_name"
+    t.integer "zip_code"
     t.boolean "is_primary"
     t.integer "user_id"
     t.integer "polling_place_id"
