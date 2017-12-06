@@ -55,7 +55,28 @@ while i < 3
       zip_code = gets.chomp
       current_user.create_residence(street_number: street_number, street_name: street_name, zip_code: zip_code, is_primary: true)
     puts "Residence added."
-    
 
+  when "find current polling place"
+    if current_user.primary_residence
+      puts "current_user.find_current_polling_place.name"
+      puts "current_user.find_current_polling_place.address"
+      puts "current_user.find_current_polling_place.council_district"
+    else
+      puts "No primary residence found. Please add a residence."
+    end
+
+  when "create a review"
+    if current_user.find_current_polling_place
+      puts "Please enter a title: "
+      title = gets.chomp
+      puts "Message Body: "
+      title = gets.chomp
+      puts "Please estimate the wait time in minutes: "
+      wait_time = gets.chomp
+      puts "Please rate the service of the pollworkers on a scale of 1 to 10."
+      service = gets.chomp
+      current_user.create_review(title: title, message: message, wait_time: wait_time, service: service)
+      puts "Review created."
+    end
   end
 end
