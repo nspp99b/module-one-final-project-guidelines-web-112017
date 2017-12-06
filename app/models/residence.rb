@@ -2,7 +2,7 @@ class Residence < ActiveRecord::Base
   belongs_to :user
   belongs_to :polling_place
 
-  def get_district
+  def get_council_district
     #uses self.address to get district
     #queries API for election district of residenceinstance.address and returns it
     query_string = "https://nyc.electionapi.com/psl/pollsiteinfo?"
@@ -11,7 +11,7 @@ class Residence < ActiveRecord::Base
     postal_code = "&postalcode=#{self.zip_code}"
     api_key = "&key=92d5202b-d221-4a46-ad3c-18a49394479c"
     url = query_string + street_number + street_name + postal_code + api_key
-    puts url
+    # puts url
     json_data = parse_district_response(RestClient.get(url))
     json_data["districtKey"].to_i
   end
@@ -24,7 +24,7 @@ class Residence < ActiveRecord::Base
     #returns its ID
     #uses self.address to get polling place_id
 
-    result = PollingPlace.find_polling_place_by_district_number(self.get_district) #returns a polling p place
+    result = PollingPlace.find_polling_place_by_council_district(self.get_council_district) #returns a polling p place
     self.polling_place_id = result.id
     self.save
   end

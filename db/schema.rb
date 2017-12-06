@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20171205183224) do
   create_table "polling_places", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "district_key"
+    t.integer "council_district"
   end
 
   create_table "residences", force: :cascade do |t|
