@@ -4,7 +4,7 @@ u3 = User.create(first_name: "Joey", last_name: "Joejoe-Shabadoo")
 
 # pp1 = PollingPlace.create(name: "PS1", address: "22-25 Jackson Ave, Long Island City, NY 11101")
 # pp2 = PollingPlace.create(name: "Stuy High", address: "345 Chambers St, New York, NY 10282" , council_district: 50041)
-pp666 = PollingPlace.create(name: "Sorry... you have nowhere to vote at this time.", address: "See you in hell.")
+pp6666 = PollingPlace.create(name: "Sorry... you have nowhere to vote at this time.", address: "See you in hell.")
 
 # c = CSV.read("/Users/smotia/Development/code/module-one-final-project-guidelines-web-112017/db/voting_poll_sites.csv" :headers=>true)
 CSV.foreach("db/voting_poll_sites.csv", headers: true) do |row|
@@ -19,4 +19,4 @@ res1 = u1.create_residence(street_number:169, street_name:"Bayard St", zip_code:
 res2 = u1.create_residence(street_number:94, street_name:"Bayard St", zip_code: 11222 ,is_primary:  false)
 res3 = u1.create_residence(street_number:218, street_name:"Beach 98th St.", zip_code: 11694 ,is_primary:  false)
 
-rv1 = u1.create_review(title: 'werst spot', message: 'holy shit this thing is broken as fuck', wait_time: 120, service: 5)
+# rv1 = u1.create_review(title: 'werst spot', message: "hot dang, don't vote here", wait_time: 120, service: 5)

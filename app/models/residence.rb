@@ -17,10 +17,10 @@ class Residence < ActiveRecord::Base
       response = RestClient.get(url)
     rescue RestClient::InternalServerError
       puts "Invalid Address"
-      return 666
+      return 6666
     end
     json_data = parse_district_response(response)
-    json_data["council_district"].to_i ? json_data["council_district"].to_i : 666
+    json_data["council_district"].to_i ? json_data["council_district"].to_i : 6666
   end
 
   def find_polling_place_id
@@ -30,7 +30,7 @@ class Residence < ActiveRecord::Base
     #uses self.address to get polling place_id
 
     result = PollingPlace.find_polling_place_by_council_district(self.get_council_district) #returns a polling p place
-    result!=nil ? self.polling_place_id = result.id : self.polling_place_id = 666
+    result!=nil ? self.polling_place_id = result.id : self.polling_place_id = 6666
     self.save
   end
 
