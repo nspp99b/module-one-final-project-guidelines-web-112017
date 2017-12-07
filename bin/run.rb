@@ -1,14 +1,16 @@
 require_relative '../config/environment'
 
-puts "Welcome to The App"
+puts "Poll Position"
 
-MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find Current Polling Place", "Create a Review", "Exit" ]
-i = 2
+MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete Your Last Review", "Exit"]
 
+current_polling_place = nil
 current_user = nil
-return_message = nil
+return_message = ''
 
+i = 2
 while i < 3
+
 system "clear"
 
   if return_message
@@ -19,10 +21,15 @@ system "clear"
     puts "You are currently logged in as #{current_user.first_name} #{current_user.last_name}."
   end
 
+  # if current_polling_place
+  #   puts "Your current Polling Place is #{current_polling_place.name} at #{current_polling_place.address}"
+  # end
+
   puts "You are on Main Menu. Enter a command:"
   MAIN_MENU_COMMANDS.each do |command|
     puts command
   end
+
   result = gets.chomp.downcase
 
   case result
@@ -71,15 +78,22 @@ system "clear"
       return_message = "Please sign in or create a current account to add a residence"
     end
 
-  when "find current polling place"
+  when "find my polling place"
     system "clear"
     if current_user
       if current_user.primary_residence
         polling_place_id = current_user.find_current_polling_place
         polling_place = PollingPlace.find_by(id: polling_place_id)
+        #current_polling_place = polling_place
 
         return_message =
-        "PlaceName: #{polling_place.name}\n Address: #{polling_place.address}\n CouncilDistrict: #{polling_place.council_district}"
+        "\n
+        PlaceName: #{polling_place.name}\n
+        Address: #{polling_place.address}\n
+        CouncilDistrict: #{polling_place.council_district}\n
+        Avg Wait Time (mins): #{polling_place.average_wait_time} \n
+        Avg Service Rating(1-10): #{polling_place.average_service_rating}
+        "
 
       else
         return_message =  "No primary residence found. Please add a residence."
@@ -88,7 +102,7 @@ system "clear"
       return_message = "You are NOT A USER you dont GET to find a polling place. Create an account."
     end
 
-  when "create a review"
+  when "review my polling place"
     system "clear"
     if  current_user && current_user.find_current_polling_place
       puts "Please enter a title: "
@@ -105,6 +119,21 @@ system "clear"
     else
       system "clear"
       return_message = "You don't have an account OR do not currently have a polling place via a residence. Please make sure you have both and try again."
+    end
+
+  when "my polling place reviews"
+    if current_user
+      user_reviews = current_user.reviews
+      user_reviews.each do |rvw|
+        return_message += "\n Polling Place: #{rvw.polling_place.name} \n Title: #{rvw.title}\n Message: #{rvw.message} \n Wait Time(in minutes): #{rvw.wait_time} \n Service Rating(1-10): #{rvw.service}"
+      end
+    else
+      return_message = "You need to be logged in to see your reviews."
+    end
+
+  when "delete your last review"
+    if current_user
+
     end
   end
 end
