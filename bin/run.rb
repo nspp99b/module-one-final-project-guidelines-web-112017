@@ -128,7 +128,7 @@ system "clear"
       # user_reviews = current_user.reviews
       current_user.reviews.reload
       current_user.reviews.each do |rvw|
-        return_message += "\n Polling Place: #{rvw.polling_place.name} \n Title: #{rvw.title}\n Message: #{rvw.message} \n Wait Time(in minutes): #{rvw.wait_time} \n Service Rating(1-10): #{rvw.service}"
+        return_message += "\n Polling Place: #{rvw.polling_place.name} \n Title: #{rvw.title}\n Message: #{rvw.message} \n Wait Time(in minutes): #{rvw.wait_time} \n Service Rating(1-10): #{rvw.service}\n\n"
       end
     else
       return_message = "You need to be logged in to see your reviews."
