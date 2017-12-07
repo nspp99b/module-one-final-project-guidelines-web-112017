@@ -55,7 +55,6 @@ system "clear"
     system "clear"
     return_message =  "Account successfully created. Welcome: #{first_name} #{last_name}. Your user id is: #{current_user.id}."
 
-
   when "add a residence"
     system "clear"
     if current_user
@@ -90,6 +89,7 @@ system "clear"
     end
 
   when "create a review"
+    system "clear"
     if  current_user && current_user.find_current_polling_place
       puts "Please enter a title: "
       title = gets.chomp
@@ -100,8 +100,10 @@ system "clear"
       puts "Please rate the service of the pollworkers on a scale of 1 to 10: "
       service = gets.chomp
       current_user.create_review(title: title, message: message, wait_time: wait_time, service: service)
+      system "clear"
       return_message =  "Review created."
     else
+      system "clear"
       return_message = "You don't have an account OR do not currently have a polling place via a residence. Please make sure you have both and try again."
     end
   end
