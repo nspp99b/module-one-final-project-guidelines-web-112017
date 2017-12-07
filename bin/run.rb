@@ -29,35 +29,35 @@ while i < 3
       puts "Welcome #{found_user.first_name} #{found_user.last_name}."
       current_user = found_user
     else
-       puts "No account found. Are you sure you can type. You might have to be able to type to vote in some states. Keep that in mind, please.."
+       puts "No account found. Are you sure you can type? You might have to be able to type to vote in some states. Keep that in mind, please.."
     end
 
   when "create account"
-    puts "Please Enter First Name"
-      first_name = gets.chomp
-    puts "Please Enter Last Name"
-      last_name = gets.chomp
-    puts "Email"
-      email = gets.chomp
-    puts "Age"
-      age = gets.chomp
+    puts "Please Enter First Name: "
+    first_name = gets.chomp
+    puts "Please Enter Last Name: "
+    last_name = gets.chomp
+    puts "Email: "
+    email = gets.chomp
+    puts "Age: "
+    age = gets.chomp
     current_user = User.create(first_name: first_name, last_name: last_name, email: email, age: age)
     puts "Account successfully created. Welcome: #{first_name} #{last_name}. Your user id is: #{current_user.id}."
 
 
   when "add a residence"
     if current_user
-    puts "Please enter your street number: "
+      puts "Please enter your street number: "
       street_number = gets.chomp
-    puts "Street Name: "
+      puts "Street Name: "
       street_name = gets.chomp
-    puts "Zip Code"
+      puts "Zip Code: "
       zip_code = gets.chomp
       current_user.create_residence(street_number: street_number, street_name: street_name, zip_code: zip_code, is_primary: true)
-    puts "Residence added."
-  else
-    puts "Please sign in or create a current account to add a residence"
-  end
+      puts "Residence added."
+    else
+      puts "Please sign in or create a current account to add a residence"
+    end
 
   when "find current polling place"
     if current_user
@@ -80,7 +80,7 @@ while i < 3
       message = gets.chomp
       puts "Please estimate the wait time in minutes: "
       wait_time = gets.chomp
-      puts "Please rate the service of the pollworkers on a scale of 1 to 10."
+      puts "Please rate the service of the pollworkers on a scale of 1 to 10: "
       service = gets.chomp
       current_user.create_review(title: title, message: message, wait_time: wait_time, service: service)
       puts "Review created."
