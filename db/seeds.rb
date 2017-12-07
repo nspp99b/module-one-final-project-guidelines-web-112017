@@ -16,7 +16,7 @@ CSV.foreach("db/voting_poll_sites.csv", headers: true) do |row|
 end
 
 res1 = u1.create_residence(street_number:169, street_name:"Bayard St", zip_code: 11222 ,is_primary:  true)
-res2 = u1.create_residence(street_number:94, street_name:"Bayard St", zip_code: 11222 ,is_primary:  true)
-res3 = u1.create_residence(street_number:218, street_name:"Beach 98th St.", zip_code: 11694 ,is_primary:  true)
+res2 = u1.create_residence(street_number:94, street_name:"Bayard St", zip_code: 11222 ,is_primary:  false)
+res3 = u1.create_residence(street_number:218, street_name:"Beach 98th St.", zip_code: 11694 ,is_primary:  false)
 
 rv1 = u1.create_review(title: 'werst spot', message: 'holy shit this thing is broken as fuck', wait_time: 120, service: 5)

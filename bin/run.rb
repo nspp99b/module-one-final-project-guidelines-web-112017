@@ -4,7 +4,7 @@ puts "Poll Position"
 
 MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete Your Last Review", "Exit"]
 
-current_polling_place = nil
+# current_polling_place = nil
 current_user = nil
 return_message = ''
 
@@ -15,6 +15,7 @@ system "clear"
 
   if return_message
     puts return_message
+    return_message = ""
   end
 
   if current_user
@@ -122,9 +123,11 @@ system "clear"
     end
 
   when "my polling place reviews"
+    system "clear"
     if current_user
-      user_reviews = current_user.reviews
-      user_reviews.each do |rvw|
+      # user_reviews = current_user.reviews
+      current_user.reviews.reload
+      current_user.reviews.each do |rvw|
         return_message += "\n Polling Place: #{rvw.polling_place.name} \n Title: #{rvw.title}\n Message: #{rvw.message} \n Wait Time(in minutes): #{rvw.wait_time} \n Service Rating(1-10): #{rvw.service}"
       end
     else
@@ -132,8 +135,14 @@ system "clear"
     end
 
   when "delete your last review"
+    system "clear"
     if current_user
-
+      current_user.reviews.last.delete
+      current_user.save
+      system "clear"
+      return_message = "Removed last Review."
+    else
+      return_message = "You need to be logged in to see your reviews."
     end
   end
 end
