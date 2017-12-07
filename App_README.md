@@ -24,12 +24,15 @@ Please type "Bundle Install" when prompted to acknowledge and install these item
 
 MAIN MENU
 The following is a list of case-insensitive main menu commands:
+"Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete My Last Review", "Exit"
 
 sign in -- existing users will be prompted to enter a user id
 create account -- new users will be led through a series of prompts to create an account
-add primary residence -- members can declare a new primary residence.
-find current polling place -- members with a declared primary residence can find information on their currrent polling place
-create review -- members will be prompted to rate and comment on their current polling place
+add a residence -- members can declare a new primary residence.
+find my polling place -- members with a declared primary residence can find information on their currrent polling place
+review my polling place -- members will be led through a series of prompts to create a review of their current polling place
+my polling place reviews -- members can see all reviews they've created
+delete my last review -- members can delete their last review
 exit -- exits program
 
 ## Built With
