@@ -12,7 +12,14 @@ class Residence < ActiveRecord::Base
     api_key = "&key=92d5202b-d221-4a46-ad3c-18a49394479c"
     url = query_string + street_number + street_name + postal_code + api_key
     # puts url
-    json_data = parse_district_response(RestClient.get(url))
+    response = nil
+    begin
+      response = RestClient.get(url)
+    rescue RestClient::InternalServerError
+      puts "Invalid Address"
+      return 666
+    end
+    json_data = parse_district_response(response)
     json_data["council_district"].to_i ? json_data["council_district"].to_i : 666
   end
 
@@ -23,7 +30,7 @@ class Residence < ActiveRecord::Base
     #uses self.address to get polling place_id
 
     result = PollingPlace.find_polling_place_by_council_district(self.get_council_district) #returns a polling p place
-    self.polling_place_id = result.id
+    result!=nil ? self.polling_place_id = result.id : self.polling_place_id = 666
     self.save
   end
 
