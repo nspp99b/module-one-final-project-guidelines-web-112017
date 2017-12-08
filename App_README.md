@@ -33,12 +33,12 @@ find my polling place -- members with a declared primary residence can find info
 review my polling place -- members will be led through a series of prompts to create a review of their current polling place
 my polling place reviews -- members can see all reviews they've created
 delete my last review -- members can delete their last review
-sign out -- signs out current user
+sign out -- signs out current userq
 exit -- exits program
 
 ## Built With
 
-* [Maven](https://bundler.io/) - Dependency Management.  Do for a brah.
+* [Bundler](https://bundler.io/) - Dependency Management.  Do for a brah.
 * [Sinatra-Active Record](https://rubygems.org/gems/sinatra-activerecord) - Extending Sinatra with Active Record Helpers
 
 ## Contributing
