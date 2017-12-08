@@ -33,6 +33,7 @@ find my polling place -- members with a declared primary residence can find info
 review my polling place -- members will be led through a series of prompts to create a review of their current polling place
 my polling place reviews -- members can see all reviews they've created
 delete my last review -- members can delete their last review
+sign out -- signs out current user
 exit -- exits program
 
 ## Built With

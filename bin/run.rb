@@ -2,7 +2,7 @@ require_relative '../config/environment'
 
 puts "Poll Position"
 
-MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete My Last Review", "Exit"]
+MAIN_MENU_COMMANDS = ["Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete My Last Review", "Sign Out", "Exit"]
 
 # current_polling_place = nil
 current_user = nil
@@ -144,5 +144,8 @@ system "clear"
     else
       return_message = "You need to be logged in to see your reviews."
     end
+
+  when "sign out"
+    current_user = nil
   end
 end
