@@ -1,51 +1,66 @@
+# Project Title
 
+Poll Position is an app that allows residents of New York City to find their current election polling place based on their primary residence, then create, modify, and delete reviews of it.
 
-# Module One Final Project Guidelines
+## Getting Started
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+Clone the repository to your local machine, and from your terminal, navigate to the local Poll Position directory and ruby bin/run.rb to get started!
 
-For your final project, we'll be building a Command Line database application.
+### Prerequisites
 
-## Project Requirements
+Poll Position runs on Ruby 2.3, and will require and prompt for installation of the following Ruby Gems:
 
-### Option One - Data Analytics Project
+```
+gem "sinatra-activerecord"
+gem "sqlite3"
+gem "require_all"
+gem "rest-client"
+gem 'json'
+```
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+Please type "Bundle Install" when prompted to acknowledge and install these items.
 
-### Option Two - Command Line CRUD App
+## Commands
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
+MAIN MENU
+The following is a list of case-insensitive main menu commands:
+"Sign In","Create Account", "Add a Residence", "Find My Polling Place", "Review My Polling Place", "My Polling Place Reviews", "Delete My Last Review", "Exit"
 
-### Brainstorming and Proposing a Project Idea
+sign in -- existing users will be prompted to enter a user id
+create account -- new users will be led through a series of prompts to create an account
+add a residence -- members can declare a new primary residence.
+find my polling place -- members with a declared primary residence can find information on their currrent polling place
+review my polling place -- members will be led through a series of prompts to create a review of their current polling place
+my polling place reviews -- members can see all reviews they've created
+delete my last review -- members can delete their last review
+sign out -- signs out current user
+exit -- exits program
 
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
+## Built With
 
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
+* [Bundler](https://bundler.io/) - Dependency Management.  Do for a brah.
+* [Sinatra-Active Record](https://rubygems.org/gems/sinatra-activerecord) - Extending Sinatra with Active Record Helpers
 
-## Instructions
+## Contributing
 
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+Pssh.
+
+## Authors
+
+* **Eric Lum** - *Initial work* - (https://github.com/eal6gf)
+* **Shahin Motia** - *Initial work* - (https://github.com/nspp99b)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Flatiron School Module One - Final Project
+* Poll Position:  If you See Something, Say Something
