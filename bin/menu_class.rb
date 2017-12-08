@@ -14,7 +14,9 @@ class Menu
       output_return_message
       output_current_user
       main_menu
-      switchboard(get_input)
+      binding.pry
+      input = get_input
+      switchboard(input)
     end
   end
 
@@ -85,18 +87,44 @@ class Menu
 
   def review_my_polling_place
     clear_screen
+    if @current_user && @current_user.find_current_polling_place
+      title = get_input("Please enter a title: ")
+      messsage = get_input("Please enter a message body: ")
+      wait_time = get_input("Please estimate the wait time in minutes: ")
+      service = get_input("Plase rate the service of the pollworkers on a scale of 1 to 10: ")
+      @current_user.create_review(title: title, message: message, wait_time: wait_time, service: service)
+      clear_screen
+      @return_messasge = "Review Created"
+    else
+      @return_message = "You don't have an account OR do not currently have a polling place via a residence. Please make sure you have both and try again."
+    end
   end
 
   def my_polling_place_reviews
-
+    clear_screen
+    if @current_user
+      @current_user.reviews.reload
+      @current_user.reviews.each do |rvw|
+        @return_message += "\n Polling Place: #{rvw.polling_place.name} \n Title: #{rvw.title}\n Message: #{rvw.message} \n Wait Time(in minutes): #{rvw.wait_time} \n Service Rating(1-10): #{rvw.service}\n\n"
+    else
+      @return_message = "You need to be logged in to see your reviews"
+    end
   end
 
   def delete_my_last_review
-
+    clear_screen
+    if @current_user
+      @current_user.reviews.last.delete
+      @current_user.save
+      clear_screen
+      @return_message = "Removed last Review."
+    else
+      @return_message = "You need to be logged in to see your reviews."
+    end
   end
 
   def sign_out
-
+    @current_user = nil
   end
 
   private
@@ -123,17 +151,18 @@ class Menu
     puts command
   end
 
-  def get_input(query_message='')
+  def get_input(query_message=''s)
     puts query_message
-    input = gets.chomp
+    binding.pry
+    input = gets.chomp.downcase
   end
 
   def switchboard(input)
-    case input
-
+    case input.downcase
     when "exit"
       self.exit_program
     when "sign in"
+      binding.pry
       self.sign_in
     when "create account"
       self.create_account
