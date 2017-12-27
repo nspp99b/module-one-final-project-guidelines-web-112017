@@ -9,7 +9,7 @@ class Residence < ActiveRecord::Base
     street_number = "streetnumber=#{self.street_number}"
     street_name = "&streetname=#{querify(self.street_name)}"
     postal_code = "&postalcode=#{self.zip_code}"
-    api_key = "&key=92d5202b-d221-4a46-ad3c-18a49394479c"
+    api_key = "xxxxx"
     url = query_string + street_number + street_name + postal_code + api_key
     # puts url
     response = nil
